@@ -240,20 +240,34 @@ class Experiment(object):
             if not self.perform_validation_during_training:
                 self.history.append(self.stats_manager.summarize())
             else:
-                self.history.append((self.stats_manager.summarize(), self.evaluate()))
+                self.history.append((self.stats_manager.summarize(), self.validate()))
             print("Epoch {} (Time: {:.2f}s)".format(
                 self.epoch, time.time() - s))
             self.save()
             if plot is not None:
                 plot(self)
         print("Finish training for {} epochs".format(num_epochs))
+    
+    def validate(self):
+        self.stats_manager.init()
+        with torch.no_grad():
+            for images, targets in self.val_loader:
+                # move data to device
+                images = images.to(self.device)
+                targets['boxes'] = targets['boxes'].to(self.device)[0]
+                targets['labels'] = targets['labels'].to(self.device)[0]
 
+                loss_dict = self.net(images, [targets])
+                losses = sum(loss for loss in loss_dict.values())
+                self.stats_manager.accumulate(losses,0,0,0)
+        return self.stats_manager.summarize()
+    
     def evaluate(self):
         """Evaluates the experiment, i.e., forward propagates the validation set
         through the network and returns the statistics computed by the stats
         manager.
         """
-        
+        #需要改！！！！！！！！！！！！！！！
         self.stats_manager.init()
         #self.net.eval()
         with torch.no_grad():
@@ -265,11 +279,12 @@ class Experiment(object):
 
                 loss_dict = self.net(images, [targets])
                 losses = sum(loss for loss in loss_dict.values())
-                #需要改！！！！！！！！！！！！！！！
+                
                 self.stats_manager.accumulate(losses,0,0,0)
         #self.net.train()
         return self.stats_manager.summarize()
-
+    
+    
     def voc_ap(rec,prec):
         # 需要改！！！！！！！！！！！！
         mrec = np.concatenate(([0.],rec,[1.]))
