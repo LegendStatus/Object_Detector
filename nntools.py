@@ -96,7 +96,7 @@ class Experiment(object):
             set and the validation set. (default: False)
     """
 
-    def __init__(self, net, train_set, val_set, optimizer, scheduler, stats_manager,
+    def __init__(self, net, train_set, val_set, optimizer, stats_manager,
                  output_dir=None, batch_size=1, perform_validation_during_training=False):
         # get device
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -123,6 +123,9 @@ class Experiment(object):
         if os.path.isfile(config_path):
             with open(config_path, 'r') as f:
                 if f.read()[:-1] != repr(self):
+                    print(repr(self))
+                    print('______________________________________')
+                    print(f.read()[:-1])
                     raise ValueError(
                         "Cannot create this experiment: "
                         "I found a checkpoint conflicting with the current setting.")
@@ -141,7 +144,7 @@ class Experiment(object):
                 'TrainSet': self.train_set,
                 'ValSet': self.val_set,
                 'Optimizer': self.optimizer,
-                'Scheduler': self.scheduler,
+                #'Scheduler': self.scheduler,
                 'StatsManager': self.stats_manager,
                 'BatchSize': self.batch_size,
                 'PerformValidationDuringTraining': self.perform_validation_during_training}
@@ -160,12 +163,14 @@ class Experiment(object):
         """Returns the current state of the experiment."""
         return {'Net': self.net.state_dict(),
                 'Optimizer': self.optimizer.state_dict(),
+                #'Scheduler': self.scheduler.state_dict(),
                 'History': self.history}
 
     def load_state_dict(self, checkpoint):
         """Loads the experiment from the input checkpoint."""
         self.net.load_state_dict(checkpoint['Net'])
         self.optimizer.load_state_dict(checkpoint['Optimizer'])
+        #self.scheduler.load_state_dict(checkpoint['Scheduler'])
         self.history = checkpoint['History']
 
         # The following loops are used to fix a bug that was
@@ -209,7 +214,6 @@ class Experiment(object):
         self.net.train()
         self.stats_manager.init()
         start_epoch = self.epoch
-        #scheduler = torch.optim.lr_scheduler.StepLR(optimizer,step_size=3,gamma=0.1)
         
         print("Start/Continue training from epoch {}".format(start_epoch))
         if plot is not None:
@@ -218,7 +222,7 @@ class Experiment(object):
         for epoch in range(start_epoch, num_epochs):
             s = time.time()
             self.stats_manager.init()
-            self.scheduler.step()
+            
             for images, targets in self.train_loader:
                 # move data to device
                 images = images.to(self.device)
@@ -243,6 +247,7 @@ class Experiment(object):
                 self.history.append((self.stats_manager.summarize(), self.validate()))
             print("Epoch {} (Time: {:.2f}s)".format(
                 self.epoch, time.time() - s))
+            #self.scheduler.step()
             self.save()
             if plot is not None:
                 plot(self)
@@ -250,6 +255,7 @@ class Experiment(object):
     
     def validate(self):
         self.stats_manager.init()
+        self.net.train()
         with torch.no_grad():
             for images, targets in self.val_loader:
                 # move data to device
@@ -269,7 +275,8 @@ class Experiment(object):
         """
         #需要改！！！！！！！！！！！！！！！
         self.stats_manager.init()
-        #self.net.eval()
+        self.net.eval()
+        
         with torch.no_grad():
             for images, targets in self.val_loader:
                 # move data to device
@@ -281,7 +288,7 @@ class Experiment(object):
                 losses = sum(loss for loss in loss_dict.values())
                 
                 self.stats_manager.accumulate(losses,0,0,0)
-        #self.net.train()
+        self.net.train()
         return self.stats_manager.summarize()
     
     
