@@ -1,0 +1,6 @@
+
+data/*
+train_v1/*
+train_rubbish/*
+__pycache__/*
+.idea

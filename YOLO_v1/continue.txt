@@ -1,0 +1,4 @@
+ epoch=49 
+ batch=709 
+ best_loss=2.7285 
+ total_loss=175.1201
