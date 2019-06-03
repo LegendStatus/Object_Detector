@@ -179,7 +179,7 @@ class Experiment(object):
         for state in self.optimizer.state.values():
             for k, v in state.items():
                 if isinstance(v, torch.Tensor):
-                    state[k] = v.to(self.net.device)
+                    state[k] = v.to(self.device)
 
     def save(self):
         """Saves the experiment on disk, i.e, create/update the last checkpoint."""
