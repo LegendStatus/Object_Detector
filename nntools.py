@@ -122,10 +122,18 @@ class Experiment(object):
         # Load checkpoint and check compatibility
         if os.path.isfile(config_path):
             with open(config_path, 'r') as f:
-                if f.read()[:-1] != repr(self):
-                    print(repr(self))
+                prev = f.read()[:-1]
+                if prev != repr(self):
+                    '''
+                    for i in range(len(prev)):
+                        if prev[i] != repr(self)[i]:
+                            print(prev[i])
+                            print('______________________________________')
+                            print(repr(self)[i])
+                    print(prev)
                     print('______________________________________')
-                    print(f.read()[:-1])
+                    print(repr(self))
+                    '''
                     raise ValueError(
                         "Cannot create this experiment: "
                         "I found a checkpoint conflicting with the current setting.")
@@ -214,7 +222,7 @@ class Experiment(object):
         self.net.train()
         self.stats_manager.init()
         start_epoch = self.epoch
-        
+        #scheduler = torch.optim.lr_scheduler.StepLR(optimizer,step_size=3,gamma=0.1)
         print("Start/Continue training from epoch {}".format(start_epoch))
         if plot is not None:
             plot(self)
@@ -247,7 +255,7 @@ class Experiment(object):
                 self.history.append((self.stats_manager.summarize(), self.validate()))
             print("Epoch {} (Time: {:.2f}s)".format(
                 self.epoch, time.time() - s))
-            #self.scheduler.step()
+            #scheduler.step()
             self.save()
             if plot is not None:
                 plot(self)
