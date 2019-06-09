@@ -2,6 +2,8 @@
 Neural Network tools developed for UCSD ECE285 MLIP.
 
 Copyright 2019. Charles Deledalle, Sneha Gupta, Anurag Paul, Inderjot Saggu.
+
+Modified by Ziyan Zhu 
 """
 
 import os

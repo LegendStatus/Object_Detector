@@ -23,10 +23,10 @@ class VOCDataset(td.Dataset):
         self.images_idx = pd.read_csv(os.path.join(root_dir, 'ImageSets/Main' ,"%s.txt" % mode), sep=' ', header=None, error_bad_lines=False) 
         self.ann_dir    = os.path.join(root_dir, 'Annotations')
         
-        self.labels_map = {'aeroplane':0,  'bicycle':1, 'bird':2,  'boat':3,      'bottle':4, 
+        self.labels_map = {'aeroplane':20,  'bicycle':1, 'bird':2,  'boat':3,      'bottle':4, 
                        'bus':5,        'car':6,      'cat':7,  'chair':8,     'cow':9,
                        'diningtable':10,'dog':11,    'horse':12,  'motorbike':13, 'person':14,
-                       'pottedplant':15,'sheep':16,  'sofa':17,   'train':18,   'tvmonitor':19, 'background':20}
+                       'pottedplant':15,'sheep':16,  'sofa':17,   'train':18,   'tvmonitor':19, 'background':0}
 
     def __len__(self):
         # Return the size of the dataset

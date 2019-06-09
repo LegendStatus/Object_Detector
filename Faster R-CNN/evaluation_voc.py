@@ -24,12 +24,12 @@ def AP(recall, precision):
     ap = np.sum((rec[i + 1] - rec[i]) * prec[i + 1])
     return ap
 
-VOC_CLASSES = (  # always index 0
-    'aeroplane', 'bicycle', 'bird', 'boat',
+VOC_CLASSES = [  # always index 0
+    'background', 'bicycle', 'bird', 'boat',
     'bottle', 'bus', 'car', 'cat', 'chair',
     'cow', 'diningtable', 'dog', 'horse',
     'motorbike', 'person', 'pottedplant',
-    'sheep', 'sofa', 'train', 'tvmonitor')
+    'sheep', 'sofa', 'train', 'tvmonitor','aeroplane']
 
 def evaluate(preds,target,VOC_CLASSES=VOC_CLASSES,threshold=0.5):
     '''
@@ -104,7 +104,7 @@ def evaluate(preds,target,VOC_CLASSES=VOC_CLASSES,threshold=0.5):
         ap = AP(rec, prec)
         print('---class {} ap {}---'.format(class_,ap))
         aps += [ap]
-    print('---map {}---'.format(np.mean(aps)))
+    print('---map {}---'.format(np.mean(aps[1:])))
     return recall, precision, aps
 
 
@@ -112,9 +112,9 @@ def cal_devidedclass(val_set,model,device):
     model.eval()
     class_gt_dict = {}
     class_pr_dict = {}
-    labels_map = {0: 'aeroplane', 1: 'bicycle', 2: 'bird', 3: 'boat', 4: 'bottle', 5: 'bus', 6: 'car', 7: 'cat',
+    labels_map = {20: 'aeroplane', 1: 'bicycle', 2: 'bird', 3: 'boat', 4: 'bottle', 5: 'bus', 6: 'car', 7: 'cat',
                   8: 'chair', 9: 'cow', 10: 'diningtable', 11: 'dog', 12: 'horse', 13: 'motorbike', 14: 'person',
-                  15: 'pottedplant', 16: 'sheep', 17: 'sofa', 18: 'train', 19: 'tvmonitor', 20: 'background'}
+                  15: 'pottedplant', 16: 'sheep', 17: 'sofa', 18: 'train', 19: 'tvmonitor', 0: 'background'}
     for labe in labels_map.values():
         class_pr_dict[labe] = []
     for i in range(len(val_set)):
@@ -167,6 +167,7 @@ def spre(pre,imid):
         temlist = [imid,scores[i],boxes[i][0],boxes[i][1],boxes[i][2],boxes[i][3]]
         cur_dict[labels[i]].append(temlist)
     return cur_dict
+
 def run(model,val_set,device,VOC_CLASSES=VOC_CLASSES,thr = 0.5):
     tic = time.time()
     class_gt_dict,class_pr_dict = cal_devidedclass(val_set,model,device)
