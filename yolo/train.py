@@ -1,17 +1,15 @@
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 import torch
-import torch.nn as nn
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 from torchvision import models
 from torch.autograd import Variable
 
-from net import vgg16, vgg16_bn
-from resnet_yolo import resnet50, resnet18
+from net import vgg16_bn
+from resnet_yolo import resnet50
 from yoloLoss import yoloLoss
 from dataset import yoloDataset
-from visualize import Visualizer
 
 import numpy as np
 import time 
@@ -27,13 +25,13 @@ if __name__ == "__main__":
     opt = parser.parse_args()
 
     use_gpu = torch.cuda.is_available()
-    # file_root = './datasets/ee285f-public/PascalVOC2012/JPEGImages/'
-    file_root = './data/VOC2012_train+val/JPEGImages/'
+    file_root = './data/JPEGImages/'
     learning_rate = opt.learning_rate
     num_epochs = opt.epochs
     batch_size = opt.batch_size
-    
-    cont = False
+    img_size = opt.img_size
+
+    cont = False  # Continue or not
     
     if opt.net == "resnet50":
         net = resnet50()
@@ -52,7 +50,7 @@ if __name__ == "__main__":
                     dd[k] = new_state_dict[k]
             net.load_state_dict(dd)
             print("load pre-trined model success")
-    elif opt.net == "vgg16" :
+    elif opt.net == "vgg16_bn":
         net = vgg16_bn()
         print('Using network VGG16')
         if os.path.exists('yolo'+opt.net+'.pth'):
@@ -69,7 +67,6 @@ if __name__ == "__main__":
                     dd[k] = new_state_dict[k]
             net.load_state_dict(dd)
             print("load pre-trined model success")
-            
     print('cuda', torch.cuda.current_device(), torch.cuda.device_count())
 
     criterion = yoloLoss(7,2,5,0.5)
@@ -86,13 +83,10 @@ if __name__ == "__main__":
         else:
             params += [{'params':[value],'lr':learning_rate}]
     optimizer = torch.optim.SGD(params, lr=learning_rate, momentum=0.9, weight_decay=1e-4)
-    # optimizer = torch.optim.Adam(net.parameters(), lr=learning_rate, weight_decay=1e-4)
 
     train_dataset = yoloDataset(root=file_root,list_file='./voc2012train.txt',train=True,transform = [transforms.ToTensor()] )
-    # train_loader = DataLoader(train_dataset,batch_size=batch_size,shuffle=True)
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
     test_dataset = yoloDataset(root=file_root,list_file='./voc2012val.txt',train=False,transform = [transforms.ToTensor()] )
-    # test_loader = DataLoader(test_dataset,batch_size=batch_size,shuffle=False, drop_last=True)
     test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=4)
     print('the training dataset has %d images' % (len(train_dataset)))
     print('the batch_size is %d' % (batch_size))
@@ -110,10 +104,8 @@ if __name__ == "__main__":
         epoch_cont = 0
         batch_cont = 0
         total_loss = 0.
-        
-        
+
     num_iter = 0
-    # vis = Visualizer(env='main')
 
     logfile = open('log.txt', 'w')
     for epoch in range(num_epochs):
@@ -125,7 +117,6 @@ if __name__ == "__main__":
             learning_rate = 0.0005
         if epoch == 40:
             learning_rate = 0.00005
-        # optimizer = torch.optim.SGD(net.parameters(),lr=learning_rate*0.1,momentum=0.9,weight_decay=1e-4)
         for param_group in optimizer.param_groups:
             param_group['lr'] = learning_rate
         
@@ -140,6 +131,7 @@ if __name__ == "__main__":
             target = Variable(target)
             if use_gpu:
                 images,target = images.cuda(),target.cuda()
+
             # Manage CUDA memory
             try:
                 pred = net(images)
@@ -165,12 +157,10 @@ if __name__ == "__main__":
                 logfile.flush()
                 num_iter += 1
                 torch.save(net.state_dict(),'yolo'+opt.net+'.pth')
-                # contfile = open('continue.txt', 'w').close()
                 contfile = open('continue.txt', 'w')
                 contfile.writelines(' epoch=%d \n batch=%d \n best_loss=%.4f \n total_loss=%.4f\n' %(epoch, i, loss.item(), total_loss/(i+1)))
                 print('Elapsed time: %.3f'%tc)
                 tc = 0.
-                # vis.plot_train_val(loss_train=total_loss / (i + 1))
 
         #validation
         validation_loss = 0.0
@@ -204,7 +194,6 @@ if __name__ == "__main__":
                 print('Elapsed time: %.3f'%tc)
                 tc = 0.
         validation_loss /= len(test_loader)
-        # vis.plot_train_val(loss_val=validation_loss)
         
         # Best network
         if best_test_loss > validation_loss:

@@ -20,24 +20,10 @@ model_urls = {
 }
 
 class VGG(nn.Module):
-
-    def __init__(self, features, num_classes=1000, image_size=448):
+    def __init__(self, features, image_size=448):
         super(VGG, self).__init__()
         self.features = features
         self.image_size = image_size
-        # self.classifier = nn.Sequential(
-        #     nn.Linear(512 * 7 * 7, 4096),
-        #     nn.ReLU(True),
-        #     nn.Dropout(),
-        #     nn.Linear(4096, 4096),
-        #     nn.ReLU(True),
-        #     nn.Dropout(),
-        #     nn.Linear(4096, num_classes),
-        # )
-        # if self.image_size == 448:
-        #      self.extra_conv1 = conv_bn_relu(512, 512)
-        #      self.extra_conv2 = conv_bn_relu(512, 512)
-        #     self.downsample = nn.MaxPool2d(kernel_size=2, stride=2)
         self.classifier = nn.Sequential(
             nn.Linear(512 * 7 * 7, 4096),
             nn.ReLU(True),
@@ -48,13 +34,9 @@ class VGG(nn.Module):
 
     def forward(self, x):
         x = self.features(x)
-        # if self.image_size == 448:
-        #      x = self.extra_conv1(x)
-        #      x = self.extra_conv2(x)
-        #      x = self.downsample(x)
         x = x.view(x.size(0), -1)
         x = self.classifier(x)
-        x = F.sigmoid(x) #归一化到0-1
+        x = F.sigmoid(x)  # normalization
         x = x.view(-1,14,14,30)
         return x
 
@@ -72,11 +54,9 @@ class VGG(nn.Module):
                 m.weight.data.normal_(0, 0.01)
                 m.bias.data.zero_()
 
-
 def make_layers(cfg, batch_norm=False):
     layers = []
     in_channels = 3
-    s = 1
     first_flag=True
     for v in cfg:
         s=1
@@ -205,25 +185,3 @@ def vgg19_bn(pretrained=False, **kwargs):
         model.load_state_dict(model_zoo.load_url(model_urls['vgg19_bn']))
     return model
 
-def test():
-    import torch
-    from torch.autograd import Variable
-    model = vgg16()
-    model.classifier = nn.Sequential(
-            nn.Linear(512 * 7 * 7, 4096),
-            nn.ReLU(True),
-            nn.Dropout(),
-            nn.Linear(4096, 4096),
-            nn.ReLU(True),
-            nn.Dropout(),
-            nn.Linear(4096, 1470),
-        )
-    print(model.classifier[6]) 
-    #print(model)
-    img = torch.rand(2,3,224,224)
-    img = Variable(img)
-    output = model(img)
-    print(output.size())
-
-if __name__ == '__main__':
-    test()

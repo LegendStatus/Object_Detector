@@ -9,6 +9,7 @@ VOC_CLASSES = (    # always index 0
     'motorbike', 'person', 'pottedplant',
     'sheep', 'sofa', 'train', 'tvmonitor')
 
+
 def parse_rec(filename):
     """ Parse a PASCAL VOC xml file """
     tree = ET.parse(filename)
@@ -27,6 +28,7 @@ def parse_rec(filename):
         objects.append(obj_struct)
     return objects
 
+
 if __name__ == "__main__":
     """ Convert xml file to txt with bounding box coordinates and corresponding class label """
     parser = argparse.ArgumentParser()
@@ -35,10 +37,8 @@ if __name__ == "__main__":
     mode = opt.mode
     
     txt_file = open('voc2012'+mode+'.txt','w')
-    # Annotations = '/datasets/ee285f-public/PascalVOC2012/Annotations/'
-    Annotations = './data/VOC2012_train+val/Annotations/'
-    # Main = '/datasets/ee285f-public/PascalVOC2012/ImageSets/Main/'
-    Main = './data/VOC2012_train+val/ImageSets/Main'
+    Annotations = './data/Annotations/'
+    Main = './data/ImageSets/Main'
     xml_files = os.listdir(Annotations)
     test_file = open(os.path.join(Main, mode+'.txt'),'r') 
     lines = test_file.readlines()

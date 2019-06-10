@@ -49,22 +49,18 @@ def decoder(pred, thre, conf):
     contain1 = pred[:, :, 4].unsqueeze(2)
     contain2 = pred[:, :, 9].unsqueeze(2)
     contain = torch.cat((contain1, contain2), 2)
-    mask1 = contain > conf  # 大于阈值
-    mask2 = (contain == contain.max())  # we always select the best contain_prob what ever it>0.9
+    mask1 = contain > conf  # threshold for confidence
+    mask2 = (contain == contain.max())  # we always select the best contain_prob what ever it > (1-conf)
     mask = (mask1 + mask2).gt(0)
-    # min_score,min_index = torch.min(contain,2) #每个cell只选最大概率的那个预测框
     for i in range(grid_num):
         for j in range(grid_num):
             for b in range(2):
-                # index = min_index[i,j]
-                # mask[i,j,index] = 0
                 if mask[i, j, b] == 1:
-                    # print(i,j,b)
                     box = pred[i, j, b * 5:b * 5 + 4]
                     contain_prob = torch.FloatTensor([pred[i, j, b * 5 + 4]])
-                    xy = torch.FloatTensor([j, i]) * cell_size  # cell左上角  up left of cell
+                    xy = torch.FloatTensor([j, i]) * cell_size  # up left of cell
                     box[:2] = box[:2] * cell_size + xy  # return cxcy relative to image
-                    box_xy = torch.FloatTensor(box.size())  # 转换成xy形式    convert[cx,cy,w,h] to [x1,xy1,x2,y2]
+                    box_xy = torch.FloatTensor(box.size())  # convert[cx,cy,w,h] to [x1,xy1,x2,y2]
                     box_xy[:2] = box[:2] - 0.5 * box[2:]
                     box_xy[2:] = box[:2] + 0.5 * box[2:]
                     max_prob, cls_index = torch.max(pred[i, j, 10:], 0)
@@ -79,7 +75,6 @@ def decoder(pred, thre, conf):
     else:
         boxes = torch.cat(boxes, 0)  # (n,4)
         probs = torch.cat(probs, 0)  # (n,)
-        # cls_indexs = torch.cat(cls_indexs,0) #(n,)
         cls_indexs = torch.IntTensor(cls_indexs)
     keep = nms(boxes, probs, thre=thre)
     return boxes[keep], cls_indexs[keep], probs[keep]
@@ -96,7 +91,6 @@ def nms(bboxes, scores, thre):
     x2 = bboxes[:, 2]
     y2 = bboxes[:, 3]
     areas = (x2 - x1) * (y2 - y1)
-
     _, order = scores.sort(0, descending=True)
     keep = []
     while order.numel() > 0:
@@ -108,16 +102,13 @@ def nms(bboxes, scores, thre):
 
         if order.numel() == 1:
             break
-
         xx1 = x1[order[1:]].clamp(min=x1[i])
         yy1 = y1[order[1:]].clamp(min=y1[i])
         xx2 = x2[order[1:]].clamp(max=x2[i])
         yy2 = y2[order[1:]].clamp(max=y2[i])
-
         w = (xx2 - xx1).clamp(min=0)
         h = (yy2 - yy1).clamp(min=0)
         inter = w * h
-
         ovr = inter / (areas[i] + areas[order[1:]] - inter)
         ids = (ovr <= thre).nonzero().squeeze()
         if ids.numel() == 0:
@@ -126,10 +117,8 @@ def nms(bboxes, scores, thre):
     return torch.LongTensor(keep)
 
 
-#
-# start predict one image
-#
 def predict_gpu(model, image_name, threshold=0.35, confidence=0.15, img_size=448,  root_path=''):
+    '''start predict one image with gpu available'''
     result = []
     image = cv2.imread(root_path + image_name)
     h, w, _ = image.shape
@@ -137,16 +126,13 @@ def predict_gpu(model, image_name, threshold=0.35, confidence=0.15, img_size=448
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     mean = (123, 117, 104)  # RGB
     img = img - np.array(mean, dtype=np.float32)
-
     transform = transforms.Compose([transforms.ToTensor(), ])
     img = transform(img)
     img = Variable(img[None, :, :, :], volatile=True)
     img = img.cuda()
-
     pred = model(img)  # 1x14x14x30
     pred = pred.cpu()
     boxes, cls_indexs, probs = decoder(pred, threshold, confidence)
-
     for i, box in enumerate(boxes):
         x1 = int(box[0] * w)
         x2 = int(box[2] * w)

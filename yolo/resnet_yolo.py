@@ -38,24 +38,20 @@ class BasicBlock(nn.Module):
 
     def forward(self, x):
         residual = x
-
         out = self.conv1(x)
         out = self.bn1(out)
         out = self.relu(out)
-
         out = self.conv2(out)
         out = self.bn2(out)
-
         if self.downsample is not None:
             residual = self.downsample(x)
-
         out += residual
         out = self.relu(out)
-
         return out
 
 
 class Bottleneck(nn.Module):
+
     expansion = 4
 
     def __init__(self, inplanes, planes, stride=1, downsample=None):
@@ -73,30 +69,27 @@ class Bottleneck(nn.Module):
 
     def forward(self, x):
         residual = x
-
         out = self.conv1(x)
         out = self.bn1(out)
         out = self.relu(out)
-
         out = self.conv2(out)
         out = self.bn2(out)
         out = self.relu(out)
-
         out = self.conv3(out)
         out = self.bn3(out)
-
         if self.downsample is not None:
             residual = self.downsample(x)
-
         out += residual
         out = self.relu(out)
 
         return out
 
+
 class detnet_bottleneck(nn.Module):
     # no expansion
     # dilation = 2
     # type B use 1x1 conv
+
     expansion = 1
 
     def __init__(self, in_planes, planes, stride=1, block_type='A'):
@@ -107,7 +100,6 @@ class detnet_bottleneck(nn.Module):
         self.bn2 = nn.BatchNorm2d(planes)
         self.conv3 = nn.Conv2d(planes, self.expansion*planes, kernel_size=1, bias=False)
         self.bn3 = nn.BatchNorm2d(self.expansion*planes)
-
         self.downsample = nn.Sequential()
         if stride != 1 or in_planes != self.expansion*planes or block_type=='B':
             self.downsample = nn.Sequential(
@@ -123,9 +115,9 @@ class detnet_bottleneck(nn.Module):
         out = F.relu(out)
         return out
 
-class ResNet(nn.Module):
 
-    def __init__(self, block, layers, num_classes=1470):
+class ResNet(nn.Module):
+    def __init__(self, block, layers):
         self.inplanes = 64
         super(ResNet, self).__init__()
         self.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3,
@@ -159,7 +151,6 @@ class ResNet(nn.Module):
                           kernel_size=1, stride=stride, bias=False),
                 nn.BatchNorm2d(planes * block.expansion),
             )
-
         layers = []
         layers.append(block(self.inplanes, planes, stride, downsample))
         self.inplanes = planes * block.expansion
@@ -180,20 +171,15 @@ class ResNet(nn.Module):
         x = self.bn1(x)
         x = self.relu(x)
         x = self.maxpool(x)
-
         x = self.layer1(x)
         x = self.layer2(x)
         x = self.layer3(x)
         x = self.layer4(x)
         x = self.layer5(x)
-        # x = self.avgpool(x)
-        # x = x.view(x.size(0), -1)
-        # x = self.fc(x)
         x = self.conv_end(x)
         x = self.bn_end(x)
-        x = F.sigmoid(x) #归一化到0-1
-        # x = x.view(-1,7,7,30)
-        x = x.permute(0,2,3,1) #(-1,7,7,30)
+        x = F.sigmoid(x)  # normalization
+        x = x.permute(0,2,3,1)  # (-1,7,7,30)
 
         return x
 
