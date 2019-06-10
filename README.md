@@ -1,2 +1,2 @@
-# Object_Detection
-This is the ECE-285-SP final project. We intend to implement state-to-art deep learning algorithms on PASCAL VOC 2012 dataset for object detection.
+# Object_Detector
+This is the ECE-285-SP final project. Faster R-CNN and Yolo_v1 are implemented respectively. Check out folder for more information.
