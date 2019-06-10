@@ -1,50 +1,75 @@
-# YOLO_v1
-A minimal PyTorch implementation of YOLOv1, with support for training, predicting and evaluation. The dataset is Pascal VOC 2012. Concept of transfer learning is applied to implement Resnet-50 and Vgg-16 with batch normalization.
+# Faster R-CNN
+A minimal PyTorch implementation of Faster R-CNN, with support for training, predicting and evaluation. The dataset is Pascal VOC 2012. Concept of transfer learning is applied to implement Resnet-50, DenseNet-121, Vgg-16 with batch normalization and MobileNet_v2.
 
 ## Installation
 ##### Clone and install requirements
     $ git clone https://github.com/LegendStatus/Object_Detector
-    $ cd Object_Detector/yolo
+    $ cd Object_Detector/
     $ sudo pip3 install -r requirements.txt
 
 ##### Set up dataset path
 
-Change root directory of training image to your own dataset in line 30 of ***train.py***, ***prediction.ipynb*** and ***evaluation.ipynb***. Default directory is './data/JPEGImages/'. If it is running on DSMLP, you can do
+The dataset is stored in ieng6 cluster. You can access the dataset at '/datasets/ee285f-public/PascalVOC2012' on ieng6 cluster. 
 
-    $ mkdir data
-    $ cd data
-    $ ln -s /datasets/ee285f-public/PascalVOC2012/
+## Visulaize Data
 
-##### Converting xml to txt
-
-This would generate the list of image that are needed for training and evaluation of PascalVOC2012. Root directory in ***xml_2_txt.py*** also is required to change
+The dataset visulization is contained in the file:
 
 ```
-$ python xml_2_txt.py --mode 'val'or'train'
+$ Visualize Dataset.ipynb
 ```
 
 ## Train
 
+The training processes for each model are in the file:
 ```
-$ python train.py [--epochs EPOCHS] 
-                  [--batch_size BATCH_SIZE]
-                  [--learning_rate Initial learning rate for SGD]
-                  [--img_size IMG_SIZE]
-                  [--net 'resnet50'or'vgg16_bn']
+$ Faster_RCNN-Desnet121.ipynb
+$ Faster_RCNN-Resnet.ipynb
+$ Faster_RCNN-mobilenet.ipynb
+$ Faster_RCNN-vgg16.ipynb
 ```
+You can simply rerun the notebook.
 
-## Prediction
-
-This would randomly pick 5 images from validation dataset and predict based on the network that is selected(Resnet-50 or Vgg-16_bn)
+The training and saving model functions are contained in the file:
 
 ```
-$ prediction.ipynb
+$ nntools.py
 ```
 
 ## Evaluation
 
-This would compute the AP of each class and overall mAP of the validation dataset.
+This would compute the AP of each class and overall mAP of the validation dataset. The evaluations of each model are contained in the same notebook as training process. 
 
 ```
-$ evaluation.ipynb
+$ Faster_RCNN-Desnet121.ipynb
+$ Faster_RCNN-Resnet.ipynb
+$ Faster_RCNN-mobilenet.ipynb
+$ Faster_RCNN-vgg16.ipynb
 ```
+
+The metric function is written in the file:
+
+```
+$ evaluation_voc.py
+```
+
+The plot of AP of each class and overall mAP is in the file:
+
+```
+$ Evaluation.ipynb
+```
+
+
+## Prediction and Demo
+
+The demo for each model is in the file:
+```
+$ demo_Faster_RCNN_DenseNet121.ipynb
+$ demo_Faster_RCNN_ResNet50.ipynb
+$ demo_Faster_RCNN_VGG16.ipynb
+$ demo_Faster_RCNN_MobileNet_v2.ipynb
+```
+Some outputs and results are contained in the Result folder.
+
+
+
