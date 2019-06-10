@@ -35,27 +35,27 @@ class VGG(nn.Module):
         #     nn.Linear(4096, num_classes),
         # )
         # if self.image_size == 448:
-        #     self.extra_conv1 = conv_bn_relu(512,512)
-        #     self.extra_conv2 = conv_bn_relu(512,512)
+        #      self.extra_conv1 = conv_bn_relu(512, 512)
+        #      self.extra_conv2 = conv_bn_relu(512, 512)
         #     self.downsample = nn.MaxPool2d(kernel_size=2, stride=2)
         self.classifier = nn.Sequential(
             nn.Linear(512 * 7 * 7, 4096),
             nn.ReLU(True),
             nn.Dropout(),
-            nn.Linear(4096, 1470),
+            nn.Linear(4096, 1470*4),
         )
         self._initialize_weights()
 
     def forward(self, x):
         x = self.features(x)
         # if self.image_size == 448:
-        #     x = self.extra_conv1(x)
-        #     x = self.extra_conv2(x)
-        #     x = self.downsample(x)
+        #      x = self.extra_conv1(x)
+        #      x = self.extra_conv2(x)
+        #      x = self.downsample(x)
         x = x.view(x.size(0), -1)
         x = self.classifier(x)
         x = F.sigmoid(x) #归一化到0-1
-        x = x.view(-1,7,7,30)
+        x = x.view(-1,14,14,30)
         return x
 
     def _initialize_weights(self):
