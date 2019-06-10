@@ -33,7 +33,9 @@ $ python train.py [--epochs EPOCHS]
                   [--net 'resnet50'or'vgg16_bn']
 ```
 
-## Prediction
+## Demo
+
+##### Prediction
 
 This would randomly pick 5 images from validation dataset and predict based on the network that is selected(Resnet-50 or Vgg-16_bn)
 
@@ -41,7 +43,7 @@ This would randomly pick 5 images from validation dataset and predict based on t
 $ prediction.ipynb
 ```
 
-## Evaluation
+##### Evaluation
 
 This would compute the AP of each class and overall mAP of the validation dataset.
 
