@@ -31,7 +31,16 @@ $ Faster_RCNN-Resnet.ipynb
 $ Faster_RCNN-mobilenet.ipynb
 $ Faster_RCNN-vgg16.ipynb
 ```
-You can simply rerun the notebook.
+You can simply rerun the notebook. The saved models and statistics are contained in the folders:
+
+```
+$ faster_rcnn_desent121
+$ faster_rcnn_resnet50
+$ faster_rcnn_mobnet_0
+$ faster_rcnn_mobnet
+$ faster_rcnn_vgg16_0
+$ faster_rcnn_vgg16
+```
 
 The training and saving model functions are contained in the file:
 
