@@ -3,6 +3,7 @@ A minimal PyTorch implementation of YOLOv1, with support for training, predictin
 
 ## Installation
 ##### Clone and install requirements
+    $ git lfs track "*.pth"
     $ git clone https://github.com/LegendStatus/Object_Detector
     $ cd Object_Detector/yolo
     $ sudo pip3 install -r requirements.txt
