@@ -7,7 +7,7 @@ A minimal PyTorch implementation of Faster R-CNN, with support for training, pre
 
 The version of pytorch is 1.1.0 or above. You can update the pytorch by running:
 ```
-    $ pip install --user --upgrade torch torchvision
+$ pip install --user --upgrade torch torchvision
 ```
 
 ##### Set up dataset path
