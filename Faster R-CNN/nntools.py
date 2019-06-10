@@ -2,6 +2,8 @@
 Neural Network tools developed for UCSD ECE285 MLIP.
 
 Copyright 2019. Charles Deledalle, Sneha Gupta, Anurag Paul, Inderjot Saggu.
+
+Modified by Ziyan Zhu 
 """
 
 import os
@@ -122,18 +124,10 @@ class Experiment(object):
         # Load checkpoint and check compatibility
         if os.path.isfile(config_path):
             with open(config_path, 'r') as f:
-                prev = f.read()[:-1]
-                if prev != repr(self):
-                    '''
-                    for i in range(len(prev)):
-                        if prev[i] != repr(self)[i]:
-                            print(prev[i])
-                            print('______________________________________')
-                            print(repr(self)[i])
-                    print(prev)
-                    print('______________________________________')
+                if f.read()[:-1] != repr(self):
                     print(repr(self))
-                    '''
+                    print('______________________________________')
+                    print(f.read()[:-1])
                     raise ValueError(
                         "Cannot create this experiment: "
                         "I found a checkpoint conflicting with the current setting.")
@@ -222,7 +216,7 @@ class Experiment(object):
         self.net.train()
         self.stats_manager.init()
         start_epoch = self.epoch
-        #scheduler = torch.optim.lr_scheduler.StepLR(optimizer,step_size=3,gamma=0.1)
+        
         print("Start/Continue training from epoch {}".format(start_epoch))
         if plot is not None:
             plot(self)
@@ -255,7 +249,7 @@ class Experiment(object):
                 self.history.append((self.stats_manager.summarize(), self.validate()))
             print("Epoch {} (Time: {:.2f}s)".format(
                 self.epoch, time.time() - s))
-            #scheduler.step()
+            #self.scheduler.step()
             self.save()
             if plot is not None:
                 plot(self)
@@ -300,16 +294,56 @@ class Experiment(object):
         return self.stats_manager.summarize()
     
     
-    def voc_ap(rec,prec):
-        # 需要改！！！！！！！！！！！！
-        mrec = np.concatenate(([0.],rec,[1.]))
-        mpre = np.concatenate(([0.],prec,[0.]))
+    def myfilter(self, bboxes, scores, labels, threshold = 0.7):
+        ind = (scores >= threshold).nonzero().squeeze()
+        bboxes = bboxes[ind]
+        scores = scores[ind]
+        labels = labels[ind]
+        return bboxes, scores, labels
 
-        for i in range(mpre.size -1, 0, -1):
-            mpre[i-1] = np.maximum(mpre[i-1],mpre[i])
+    def nms(self, bboxes, scores, threshold=0.6):
+            _, order = scores.sort(0, descending=True)    # descrasing order
 
-        i = np.where(mrec[1:] != mrec[:-1])[0]
+            x1 = bboxes[:,0]
+            y1 = bboxes[:,1]
+            x2 = bboxes[:,2]
+            y2 = bboxes[:,3]
+            areas = (x2-x1)*(y2-y1)   # [N,] area of each bbox
 
-        ap = np.sum((mrec[i + 1] - mrec[i]) * mpre[i + 1])
 
+            keep = []
+            while order.numel() > 0:       # torch.numel() returns the number of elements
+                if order.numel() == 1:     # only one left
+                    i = order.item()
+                    keep.append(i)
+                    break
+                else:
+                    i = order[0].item()    # keep the bbox with largest score
+                    keep.append(i)
+
+                # 计算box[i]与其余各框的IOU(思路很好)
+                xx1 = x1[order[1:]].clamp(min=x1[i])   # [N-1,]
+                yy1 = y1[order[1:]].clamp(min=y1[i])
+                xx2 = x2[order[1:]].clamp(max=x2[i])
+                yy2 = y2[order[1:]].clamp(max=y2[i])
+                inter = (xx2-xx1).clamp(min=0) * (yy2-yy1).clamp(min=0)   # [N-1,]
+
+                iou = inter / (areas[i]+areas[order[1:]]-inter)  # [N-1,]
+                idx = (iou <= threshold).nonzero().squeeze() # 
+                if idx.numel() == 0:
+                    break
+                order = order[idx+1]   
+            return torch.LongTensor(keep)   
+    
+    def AP(self, recall, precision):
+        '''Compute average precision for one class'''
+        rec = np.concatenate(([0.], recall, [1.]))
+        prec = np.concatenate(([0.], precision, [0.]))
+        for i in range(prec.size -1, 0, -1):
+            prec[i-1] = np.maximum(prec[i-1],prec[i])
+        i = np.where(rec[1:] != rec[:-1])[0]
+        ap = np.sum((rec[i + 1] - rec[i]) * prec[i + 1])
         return ap
+    
+    
+
