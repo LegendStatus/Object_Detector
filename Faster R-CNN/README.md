@@ -72,7 +72,7 @@ $ demo_Faster_RCNN_ResNet50.ipynb
 $ demo_Faster_RCNN_VGG16.ipynb
 $ demo_Faster_RCNN_MobileNet_v2.ipynb
 ```
-Some outputs and results are contained in the Result folder.
+Some outputs and results are contained in the Results folder.
 
 
 
