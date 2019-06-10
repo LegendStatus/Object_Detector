@@ -4,8 +4,9 @@ A minimal PyTorch implementation of Faster R-CNN, with support for training, pre
 ## Installation
 ##### Clone and install requirements
     $ git clone https://github.com/LegendStatus/Object_Detector
-    $ cd Object_Detector/
-    $ sudo pip3 install -r requirements.txt
+
+The version of pytorch is 1.1.0 or above. You can update the pytorch by running:
+    $ pip install --user --upgrade torch torchvision
 
 ##### Set up dataset path
 
