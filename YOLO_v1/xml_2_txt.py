@@ -35,10 +35,8 @@ if __name__ == "__main__":
     mode = opt.mode
     
     txt_file = open('voc2012'+mode+'.txt','w')
-    # Annotations = '/datasets/ee285f-public/PascalVOC2012/Annotations/'
-    Annotations = './data/VOC2012_train+val/Annotations/'
-    # Main = '/datasets/ee285f-public/PascalVOC2012/ImageSets/Main/'
-    Main = './data/VOC2012_train+val/ImageSets/Main'
+    Annotations = './data/Annotations/'
+    Main = './data/ImageSets/Main'
     xml_files = os.listdir(Annotations)
     test_file = open(os.path.join(Main, mode+'.txt'),'r') 
     lines = test_file.readlines()

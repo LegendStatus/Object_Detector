@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8325952a-c7ec-4db9-a683-b84cb0d220df" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/AP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/Desnet121.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/Faster_RCNN-Desnet121.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Faster R-CNN/Faster_RCNN-Desnet121.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/Pre_Time.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/Readme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/Resnet50.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/Visualize Dataset.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Faster R-CNN/Visualize Dataset.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/dataset1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/dataset2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/dataset3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/dataset4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/dataset5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/dataset_stats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/desnet_2008_002481.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/desnet_2008_007478.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/desnet_2008_008595.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/desnet_2010_002245.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/desnet_2010_005441.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/fasterrcnn_art.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/fps.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/mobile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/mobile_2008_002481.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/mobile_2008_007478.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/mobile_2008_008595.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/mobile_2010_002245.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/mobile_2010_005441.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/resnet_2008_002481.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/resnet_2008_007478.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/resnet_2008_008595.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/resnet_2010_002245.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/resnet_2010_005441.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/true_2008_002481.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/true_2008_007478.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/true_2008_008595.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/true_2010_002245.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/true_2010_005441.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/vgg16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/vgg_2008_002481.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/vgg_2008_007478.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/vgg_2008_008595.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/vgg_2010_002245.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Faster R-CNN/vgg_2010_005441.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PR curve.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/evaluation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_000027.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_000239.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_000268.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_001140.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_001593.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_001669.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_001736.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_001895.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_001930.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_002223.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_002250.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_002481.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_002502.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_002971.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_003152.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_003202.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_003526.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_004054.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_004103.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_004182.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_004552.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_004640.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_004689.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_005270.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_006617.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_006890.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_006967.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_007478.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_007585.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_008066.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_008084.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_008086.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_008233.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_008376.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_008392.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_008595.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2008_008636.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_000165.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_000389.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_000411.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_000563.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_001426.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_001663.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_001854.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_002191.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_002380.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_002531.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_002744.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_003273.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_003380.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_003538.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_004262.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_004530.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_004913.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_005061.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2009_005119.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_000351.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_000384.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_000665.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_000865.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_001286.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_001294.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_001452.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_001697.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_001913.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_002022.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_002113.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_002245.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_002303.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_002332.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_002383.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_002408.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_002409.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_002660.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_002929.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_003279.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_003506.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_003632.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_004037.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_004157.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_004219.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_004339.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_004877.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_005160.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_005243.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_005398.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_005441.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_005496.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_005572.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2010_005706.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2011_000309.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2011_000592.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2011_000627.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2011_000767.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2011_001158.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2011_002279.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2011_002535.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2011_002617.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2011_002730.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/2011_002887.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yolo_resnet50_loss.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yolo_vgg16_2008_002481.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yolo_vgg16_2008_007478.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yolo_vgg16_2008_008595.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yolo_vgg16_2010_002245.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yolo_vgg16_2010_005441.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yolo_vgg16bn_loss.png" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/util_pred.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/train.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="680">
+              <caret line="52" column="29" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/prediction.ipynb">
+          <provider selected="true" editor-type-id="ipnb-editor">
+            <state>
+              <selected id="0" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jupyter Notebook" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/predict.ipynb" />
+        <option value="$PROJECT_DIR$/net.py" />
+        <option value="$PROJECT_DIR$/yoloLoss.py" />
+        <option value="$PROJECT_DIR$/util_pred.py" />
+        <option value="$PROJECT_DIR$/util_eval.py" />
+        <option value="$PROJECT_DIR$/train.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="961" />
+    <option name="width" value="966" />
+    <option name="height" value="1047" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="yolo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yolo" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lgses\PycharmProjects\yolo_v1" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8325952a-c7ec-4db9-a683-b84cb0d220df" name="Default Changelist" comment="" />
+      <created>1559779401493</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1559779401493</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="R Graphics" order="3" />
+      <window_info anchor="right" id="R Packages" order="4" />
+    </layout>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/net.py</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/yoloLoss.py</url>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/yoloLoss.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="940">
+          <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
+          <folding>
+            <element signature="e#54#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#16#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resnet_yolo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4285">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predict.ipynb" />
+    <entry file="file://$PROJECT_DIR$/util_eval.py" />
+    <entry file="file://$PROJECT_DIR$/util_pred.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prediction.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="52" column="29" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

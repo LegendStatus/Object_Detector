@@ -11,7 +11,6 @@ from net import vgg16, vgg16_bn
 from resnet_yolo import resnet50, resnet18
 from yoloLoss import yoloLoss
 from dataset import yoloDataset
-from visualize import Visualizer
 
 import numpy as np
 import time 
@@ -27,8 +26,7 @@ if __name__ == "__main__":
     opt = parser.parse_args()
 
     use_gpu = torch.cuda.is_available()
-    # file_root = './datasets/ee285f-public/PascalVOC2012/JPEGImages/'
-    file_root = './data/VOC2012_train+val/JPEGImages/'
+    file_root = './data/JPEGImages/'
     learning_rate = opt.learning_rate
     num_epochs = opt.epochs
     batch_size = opt.batch_size
@@ -52,7 +50,7 @@ if __name__ == "__main__":
                     dd[k] = new_state_dict[k]
             net.load_state_dict(dd)
             print("load pre-trined model success")
-    elif opt.net == "vgg16" :
+    elif opt.net == "vgg16_bn" :
         net = vgg16_bn()
         print('Using network VGG16')
         if os.path.exists('yolo'+opt.net+'.pth'):
